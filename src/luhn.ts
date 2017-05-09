@@ -4,12 +4,13 @@ function checkLuhn(proposed:string, multiple:number = 10): number
 {
     let sum:number = 0;
     let length:number = proposed.length;
+    let bEven = false;
 
     for (let i = (length - 1); i >= 0; i--)
     {
         let digit = parseInt(proposed[i]);
 
-        if (digit)
+        if (bEven === true)
         {
             digit = digit * 2; 
         }
@@ -17,6 +18,7 @@ function checkLuhn(proposed:string, multiple:number = 10): number
         {
             digit = digit - 9;
         }
+        bEven = !bEven;
         sum += digit;
     }
 
@@ -24,7 +26,12 @@ function checkLuhn(proposed:string, multiple:number = 10): number
 }
 
 
-function is_luhn_valid(proposed:string, multiple:number = 10): boolean
+function isLuhnValid(proposed:string, multiple:number = 10): boolean
 {
-    return (checkLuhn(proposed, multiple)) === 0;
+    let ret = (checkLuhn(proposed, multiple) === 0);
+
+    return ret;
 }
+
+export { isLuhnValid };
+export { checkLuhn };

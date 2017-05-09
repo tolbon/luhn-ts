@@ -18,5 +18,9 @@
   "homepage": "https://github.com/tolbon/luhn-ts#readme",
   "dependencies": {
     "typescript": "^2.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0"
   }
 }
