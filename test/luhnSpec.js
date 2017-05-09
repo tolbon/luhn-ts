@@ -39,6 +39,9 @@ describe('Specs', function(){
         it('Test 543210', function(){
             assert.equal(luhn.checkLuhn("543210"), 5, 'Not Luhn Validate');
         });
+        it('Test 543211', function(){
+            assert.equal(luhn.checkLuhn("543211"), 4, 'Not Luhn Validate');
+        });
         it('Test "Laposte", multiple 5', function(){
             //French society "Laposte" use a Siret number with a multiple of 5 
             assert.equal(luhn.checkLuhn("35600000000048", 5), 0, 'Not Luhn Validate');
