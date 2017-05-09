@@ -1,16 +1,16 @@
 "use strict";
 
-function checkLuhn(proposed:string, multiple:number = 10): number
+function checkLuhn(strToTest: string, multiple: number = 10): number
 {
     let sum:number = 0;
-    let length:number = proposed.length;
-    let bEven = false;
+    let length:number = strToTest.length;
+    let odd = false;
 
     for (let i = (length - 1); i >= 0; i--)
     {
-        let digit = parseInt(proposed[i]);
+        let digit = parseInt(strToTest[i], 10);
 
-        if (bEven === true)
+        if (odd === true)
         {
             digit = digit * 2; 
         }
@@ -18,7 +18,7 @@ function checkLuhn(proposed:string, multiple:number = 10): number
         {
             digit = digit - 9;
         }
-        bEven = !bEven;
+        odd = !odd;
         sum += digit;
     }
 
@@ -26,12 +26,24 @@ function checkLuhn(proposed:string, multiple:number = 10): number
 }
 
 
-function isLuhnValid(proposed:string, multiple:number = 10): boolean
+function isLuhnValid(strToTest: string, multiple: number = 10): boolean
 {
-    let ret = (checkLuhn(proposed, multiple) === 0);
+    if (strToTest.length === 0)
+    {
+        return false;
+    }
 
+    let ret = (checkLuhn(strToTest, multiple) === 0);
     return ret;
+}
+
+function cleanProposed(strToTest: string): string
+{
+    let cleanStr = String(strToTest).replace(/[^\d]/g, "");
+
+    return cleanStr;
 }
 
 export { isLuhnValid };
 export { checkLuhn };
+export { cleanProposed };
