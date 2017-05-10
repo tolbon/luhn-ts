@@ -57,6 +57,19 @@ function correctedLuhn(strToTest: string, multiple: number = 10): string
 }
 
 /**
+ * @param {string} strToTest 
+ * @param {number} multiple
+ * @return {number}
+ */
+function computeCheckSumControl(strToTest: string, multiple: number = 10): number
+{
+    let copy: string = String(strToTest).concat('0');
+    let ret: number = checkLuhn(copy, multiple);
+
+    return ret;
+}
+
+/**
  * Return false if strToTest is empty or checkLuhn not equals 0 
  * @param {string} strToTest 
  * @param {number} multiple 
@@ -87,4 +100,6 @@ function cleanProposed(strToTest: string): string
 
 export { isLuhnValid };
 export { checkLuhn };
+export { computeCheckSumControl };
+export { correctedLuhn };
 export { cleanProposed };
