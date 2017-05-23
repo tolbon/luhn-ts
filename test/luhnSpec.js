@@ -62,18 +62,29 @@ describe('Specs', function(){
     });
 
     describe('cleanProposed', function(){
-            it('Normal String', function(){
-                assert.equal(luhn.cleanProposed("1234567812345670"), "1234567812345670", 'Not Luhn Validate');
-            });
-            it('Test number with - separator', function(){
-                assert.equal(luhn.cleanProposed("1234-56781234-5670"), "1234567812345670", 'Not Luhn Validate');
-            });
-            it('random stuf', function(){
-                assert.equal(luhn.cleanProposed("jljkljkljkljkl12k34 567812-3456-70----------"), "1234567812345670", 'Not Luhn Validate');
-            });
-            it('empty string', function(){
-                assert.equal(luhn.cleanProposed(""), "", 'Not Luhn Validate');
-            });
+        it('Normal String', function(){
+            assert.equal(luhn.cleanProposed("1234567812345670"), "1234567812345670", 'Not Luhn Validate');
+        });
+        it('Test number with - separator', function(){
+            assert.equal(luhn.cleanProposed("1234-56781234-5670"), "1234567812345670", 'Not Luhn Validate');
+        });
+        it('random stuf', function(){
+            assert.equal(luhn.cleanProposed("jljkljkljkljkl12k34 567812-3456-70----------"), "1234567812345670", 'Not Luhn Validate');
+        });
+        it('empty string', function(){
+            assert.equal(luhn.cleanProposed(""), "", 'Not Luhn Validate');
+        });
+    });
+
+    describe('computeCheckSumControl', function(){
+        it('Compute My Old CB', function(){
+            assert.equal(luhn.computeCheckSumControl("497401423384552"), "3", 'Not Luhn Validate');
+        });
+    });
+    describe('correctedLuhn', function(){
+        it('Corrected My Old CB', function(){
+            assert.equal(luhn.correctedLuhn("4974014233845521"), "4974014233845523", 'Not Luhn Validate');
+        });
     });
 
 });
