@@ -30,6 +30,10 @@ describe('Specs', function(){
         it('Test 1234567812345670', function(){
             assert.equal(luhn.isLuhnValid("1234567812345670"), true, 'Not Luhn Validate');
         });
+        it('Test "Laposte", multiple 5', function(){
+            //French society "Laposte" use a Siret number with a multiple of 5 
+            assert.equal(luhn.isLuhnValid("35600000000048", 5), true, 'Not Luhn Validate');
+        });
     });
 
     describe('checkLuhn', function(){
