@@ -1,5 +1,5 @@
 # luhn-ts
-Luhn's Algorithm write in Typescript
+Luhn's Algorithm write in Typescript (already transpiled/compiled in lib folder)
 
 ## Installation ##
 
