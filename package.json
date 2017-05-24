@@ -20,6 +20,7 @@
     "typescript": "^2.3.2"
   },
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "eslint": "^3.19.0",
     "mocha": "^3.3.0"
   }
