@@ -7,19 +7,21 @@
  * @param {number} multiple
  * @return {number} the correct number of checksum 
  */
+
 function checkLuhn(strToTest: string, multiple: number = 10): number
 {
+    let digit: number = 0;
     let sum: number = 0;
     let length: number = strToTest.length;
     let odd: boolean = false;
 
     for (let i: number = (length - 1); i >= 0; i--)
     {
-        let digit: number = parseInt(strToTest[i], 10);
+        digit = parseInt(strToTest[i], 10) | 0;
 
         if (odd === true)
         {
-            digit = digit * 2; 
+            digit = digit * 2 | 0; 
         }
         if (digit > 9)
         {
