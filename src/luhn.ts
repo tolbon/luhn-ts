@@ -45,10 +45,14 @@ function checkLuhn(strToTest: string, multiple: number = 10): number
 function correctedLuhn(strToTest: string, multiple: number = 10): string
 {
     let ret: number = checkLuhn(strToTest, multiple);
-
+    
     if (ret !== 0)
     {
         let digit = parseInt(strToTest[(strToTest.length - 1)]);
+        if ((digit + ret) > 9)
+        {
+            throw new Error("Too much number to corrected");
+        }
         let copy = strToTest.substr(0, strToTest.length - 1);
         return copy.concat((digit + ret).toString());
     }
@@ -57,14 +61,29 @@ function correctedLuhn(strToTest: string, multiple: number = 10): string
 }
 
 /**
+ * 
  * @param {string} strToTest 
  * @param {number} multiple
- * @return {number}
+ * @return {number[]} 
  */
-function computeCheckSumControl(strToTest: string, multiple: number = 10): number
+function computeCheckSumControl(strToTest: string, multiple: number = 10): number[]
 {
-    let copy: string = String(strToTest).concat('0');
-    let ret: number = checkLuhn(copy, multiple);
+    let ret: number[] = [];
+    let i: number = 0;
+    let checkSumTest: number = 0;
+    let copy: string;
+
+    while(i < 10)
+    {
+        copy = String(strToTest).concat(i.toString());
+        checkSumTest = checkLuhn(copy, multiple) | 0;
+        i += checkSumTest;      
+        if (i < 10)
+        {
+            ret.push(i);
+            i++;
+        }
+    }
 
     return ret;
 }
