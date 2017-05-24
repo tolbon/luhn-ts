@@ -3,6 +3,12 @@ Luhn's Algorithm write in Typescript
 
 ## Installation ##
 
+```bash
+npm install luhn-ts
+# OR
+yarn add luhn-ts
+```
+
 #### Node.js ####
 
 ```javascript
