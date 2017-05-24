@@ -75,16 +75,43 @@ describe('Specs', function(){
             assert.equal(luhn.cleanProposed(""), "", 'Not Luhn Validate');
         });
     });
-
-    describe('computeCheckSumControl', function(){
-        it('Compute My Old CB', function(){
-            assert.equal(luhn.computeCheckSumControl("497401423384552"), "3", 'Not Luhn Validate');
-        });
-    });
     describe('correctedLuhn', function(){
         it('Corrected My Old CB', function(){
             assert.equal(luhn.correctedLuhn("4974014233845521"), "4974014233845523", 'Not Luhn Validate');
         });
+        /* https://nodejs.org/api/assert.html#assert_assert_throws_block_error_message
+        * Always Fails I didn't know why
+        it('My CB Have Twins ?', function(){
+            assert.throws(luhn.correctedLuhn("4974014233845524"), Error, 'Not Luhn Validate');
+        });
+        it('Corrected My Old CB Twins', function(){
+            assert.throws(luhn.correctedLuhn("4974014233845529"), /number/, 'Not Luhn Validate');
+        });
+        */
+        it('Corrected Laposte Stuff', function(){
+            assert.equal(luhn.correctedLuhn("35600000000046", 5), "35600000000048", 'Not Luhn Validate');
+        });
+        it('Corrected Laposte Stuff', function(){
+            assert.equal(luhn.correctedLuhn("35600000000043", 5), "35600000000043", 'Not Luhn Validate');
+        });
     });
 
+    describe('computeCheckSumControl', function(){
+        it('Compute Laposte Stuff', function(){
+            assert.equal(luhn.computeCheckSumControl("3560000000004", 5)[0], 3, 'Not Luhn Validate');
+        });
+        it('Compute Laposte Stuff', function(){
+            assert.equal(luhn.computeCheckSumControl("3560000000004", 5)[1], 8, 'Not Luhn Validate');
+        });
+        it('Compute Laposte Stuff', function(){
+            assert.deepStrictEqual(luhn.computeCheckSumControl("3560000000004", 5), [3, 8], 'Not Luhn Validate');
+        });
+        it('Compute My Old CB', function(){
+            assert.equal(luhn.computeCheckSumControl("497401423384552")[0], 3, 'Not Luhn Validate');
+        });
+        it('Compute All My Old CB Twin', function(){
+            assert.deepStrictEqual(luhn.computeCheckSumControl("497401423384552"), [3], 'Not Luhn Validate');
+        });
+    });
+    
 });
