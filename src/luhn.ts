@@ -12,7 +12,7 @@ function checkLuhn(strToTest: string, multiple: number = 10): number
 {
     let digit: number = 0;
     let sum: number = 0;
-    let length: number = strToTest.length;
+    let length: number = strToTest.length |0;
     let odd: boolean = false;
 
     for (let i: number = (length - 1); i >= 0; i--)
@@ -21,11 +21,12 @@ function checkLuhn(strToTest: string, multiple: number = 10): number
 
         if (odd === true)
         {
-            digit = digit * 2 | 0; 
-        }
-        if (digit > 9)
-        {
-            digit = digit - 9;
+            digit = digit * 2;
+
+            if (digit > 9)
+            {
+                digit = digit - 9;
+            }
         }
         odd = !odd;
         sum += digit;
